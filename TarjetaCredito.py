@@ -57,13 +57,6 @@ class TarjetaCredito:
                 f"Deuda Actual ==> ${tarjeta.saldo_pagar:.2f} pesos / "
                 f"Interés  {tarjeta.intereses * 100:.1f}%,==> {tarjeta.saldo_pagar * tarjeta.intereses:.2f} pesos /  "
                 f"Disponible: $ {(tarjeta.limite_credito - tarjeta.saldo_pagar):.2f} pesos")
-            '''print(f"\nTarjeta {i}:")
-            print(f" • Límite: $ {tarjeta.limite_credito:.2f} pesos")
-            print(f" • Deuda actual: $ {tarjeta.saldo_pagar:.2f} pesos")
-            print(f" • Interés: {tarjeta.intereses * 100:.1f} %")
-            print(f" • Disponible: $ {(tarjeta.limite_credito - tarjeta.saldo_pagar):.2f} pesos")'''
-            #print(\n"-" * 40)
-
 
     @staticmethod
     def validar_monto(monto):
