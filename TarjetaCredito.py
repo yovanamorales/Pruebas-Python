@@ -13,12 +13,13 @@ class TarjetaCredito:
     
     #Crea el método compra para la clase TarjetaCredito
     def compra(self, monto):
-        if self.saldo_pagar + monto > self.limite_credito:
+        total= self.saldo_pagar + monto
+        if (total > self.limite_credito):
             print(f"Tarjeta {self.numero}: rechazada has alcanzado tu límite de crédito")
             print(f"Saldo a pagar: ${self.saldo_pagar:.2f} pesos")
         else:
             self.saldo_pagar += monto
-            print(f"tarjeta {self.numero:} Compra realizada ${monto:.2f} pesos.")
+            print(f"tarjeta {self.numero:} Compra realizada por ${monto:.2f} pesos.")
             print("")
         return self
   
@@ -28,13 +29,14 @@ class TarjetaCredito:
             print(" El monto ingresado (${monto:.2f}) supera el saldo a pagar(${self.saldo_pagar:.2f})en la tarjeta {self.numero}.")
         else:
             self.saldo_pagar -= monto
-            print(f"Realizo pago {monto:.2f} ==> Nuevo saldo: ${self.saldo_pagar:.2f}.")
+            print(f"Realizo pago de {monto:.2f} ==> Nuevo saldo: ${self.saldo_pagar:.2f}.")
+        
         return self
     
     #Crea el método mostrar_info_tarjeta para la clase TarjetaCredito
     def mostrar_info_tarjeta(self):
         print(f"\n ===== Información de la Tarjeta {self.numero} ===== ")
-        print(f"Saldo a Pagar: $ {self.saldo_pagar:.2f} pesos")
+        print(f"Saldo a Pagar es: $ {self.saldo_pagar:.2f} pesos")
         print(f"Límite de Crédito: $ {self.limite_credito:.2f} pesos")
         print(f"Interés: {self.intereses * 100:.1f} %")
         print(f"Disponible: $ {(self.limite_credito - self.saldo_pagar):.2f} pesos")
@@ -51,12 +53,14 @@ class TarjetaCredito:
 #bonus
     @classmethod
     def mostrar_todas(cls):
-        print(f"\n======= Listado de {len(cls.tarjetas)} tarjetas(s) =======")
-        for i, tarjeta in enumerate(cls.tarjetas, start=1):
-            print(f"\nTarjeta {i}: Disponible ==> ${tarjeta.limite_credito:.2f} pesos /  "
-                f"Deuda Actual ==> ${tarjeta.saldo_pagar:.2f} pesos / "
-                f"Interés  {tarjeta.intereses * 100:.1f}%,==> {tarjeta.saldo_pagar * tarjeta.intereses:.2f} pesos /  "
-                f"Disponible: $ {(tarjeta.limite_credito - tarjeta.saldo_pagar):.2f} pesos")
+        print(f"\n======= Listado de {len(cls.tarjetas)} tarjeta(s) =======")
+        for tarjeta in cls.tarjetas:
+            print(f"\n===== Tarjeta {tarjeta.numero} =====")
+            print(f" Límite de crédito:   $ {tarjeta.limite_credito:.2f}")
+            print(f" Saldo a pagar:       $ {tarjeta.saldo_pagar:.2f}")
+            print(f" Interés (%):         {tarjeta.intereses * 100:.1f} %")
+            print(f" Disponible:          $ {(tarjeta.limite_credito - tarjeta.saldo_pagar):.2f}")
+            print("=" * 40)
 
     @staticmethod
     def validar_monto(monto):
@@ -70,8 +74,8 @@ class TarjetaCredito:
 #Para la primera tarjeta, haz 2 compras y un pago. Luego cobra los intereses y muestra la información de la tarjeta; 
 # todo esto en una sola línea a través de la encadenación.
 
-tarjeta1 = TarjetaCredito(500000,0.07)
-tarjeta1.compra(50000).compra(120000).pago(50000).cobrar_interes().mostrar_info_tarjeta()
+tarjeta1 = TarjetaCredito(500000,0.07,50000)
+tarjeta1.compra(50000).compra(120000).cobrar_interes().mostrar_info_tarjeta()
 
 
 #Para la segunda tarjeta, haz 3 compras y 2 pagos. Luego cobra los intereses y muestra la información de la tarjeta;
