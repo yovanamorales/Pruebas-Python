@@ -1,0 +1,16 @@
+ /* Solo columnas (borde izquierdo y derecho) */
+.table td,
+.table th {
+border-left: 2px solid #000 !important;
+border-right: 2px solid #000 !important;
+border-top: none !important;
+border-bottom: none !important;
+}
+
+  /* Borde superior e inferior solo en toda la tabla */
+.table {
+border-top: 2px solid #000 !important;
+border-bottom: 2px solid #000 !important;
+border-left: none !important;
+border-right: none !important;
+}
